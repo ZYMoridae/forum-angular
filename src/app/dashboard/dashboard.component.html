@@ -1,0 +1,49 @@
+<!-- <p>
+  dashboard works!
+  {{workoutCategory.id}}
+  {{workoutCategory.name}}
+</p> -->
+<!-- <div *ngIf="userInfo">
+  {{userInfo.id}}
+</div> -->
+<div>
+  <!-- <mat-form-field>
+    <input [(ngModel)]="workoutCategory.name" matInput placeholder="Favorite food" value="Sushi">
+  </mat-form-field> -->
+  <div *ngIf="posts" class="post-list">
+      <ul *ngFor="let post of posts" class="post-list-item-container">  
+        <li>
+          <ul class="post-list-item">
+            <li>
+               <img src="{{post.user.image}}" alt="" style="width: 48px;height: 48px;border-radius: 50%;">
+            </li>
+            <li style="width: 100%;text-align: left;">
+              <span style="margin-left: 10px;color: #3f51b5;">
+                [{{post.id}}] - {{post.title}}
+              </span>
+              <span class="post-metas">
+                <div class="meta-info">
+                  <span *ngIf="post.unread_count > 0;else readicon" >
+                    <fa name="comment"></fa>{{post.unread_count}}
+                  </span>
+                  <ng-template #readicon>
+                    <span>
+                      <fa name="comment-o"></fa>{{post.read_number}}
+                    </span>
+                  </ng-template>
+                </div>
+                <div class="meta-info">
+                  Last commented by {{post.last_comment_by}}
+                </div>
+                <div class="meta-info">
+                  {{post.last_comment_at * 1000 | timeAgo}}
+                </div>
+              </span>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    <mat-spinner *ngIf="isLoadingPosts" [diameter]="50" style="margin:0 auto;"></mat-spinner>
+  </div>
+  
+</div>
