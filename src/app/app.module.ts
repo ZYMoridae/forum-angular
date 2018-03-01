@@ -24,6 +24,8 @@ import {InfoService} from './info.service';
 import { HttpClientModule } from '@angular/common/http';
 import {TimeAgoPipe} from 'time-ago-pipe';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { SecondNavigatorComponent } from './forum/second-navigator/second-navigator.component';
+import { ForumNavigatorComponent } from './forum-navigator/forum-navigator.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     DashboardComponent,
     MealplanComponent,
     GlobalHeaderComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    SecondNavigatorComponent,
+    ForumNavigatorComponent
   ],
   imports: [
     BrowserModule,
