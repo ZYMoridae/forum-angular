@@ -3,6 +3,28 @@
     <span>SWEAT FORUM</span>
     <span class="example-spacer"></span>
     <mat-icon class="example-icon">notifications</mat-icon>
-    <mat-icon class="example-icon">perm_identity</mat-icon>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon class="example-icon">perm_identity</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="openDialog()">
+        <mat-icon>person</mat-icon>
+        <span>Login</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        <span>Redial</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>voicemail</mat-icon>
+        <span>Check voicemail</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Disable alerts</span>
+      </button>
+    </mat-menu>
   </mat-toolbar-row>
 </mat-toolbar>
+
+

@@ -1,3 +1,24 @@
-<p>
-  second-navigator works!
-</p>
+<ul class="second-navigator">
+  <li class="second-navigator-item">
+    <div *ngIf="tags.length > 0" style="margin-bottom: 30px;">
+      <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
+        <mat-icon class="example-icon">toc</mat-icon>
+        {{selectedTag.name}}
+      </button>
+      <mat-menu #menu="matMenu">
+        <button *ngFor="let tag of tags" mat-menu-item (click)="tagSelected(tag)">{{tag.name}}</button>
+      </mat-menu>
+    </div>    
+  </li>
+  <li class="second-navigator-item">
+    <div *ngIf="tags.length > 0" style="margin-bottom: 30px;">
+      <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
+        <mat-icon class="example-icon">filter_list</mat-icon>
+        {{sortItem.name}}
+      </button>
+      <mat-menu #menu="matMenu">
+        <button *ngFor="let sortItem of sortItems" mat-menu-item (click)="sortItemSelected(sortItem)">{{sortItem.name}}</button>
+      </mat-menu>
+    </div>    
+  </li>  
+</ul>

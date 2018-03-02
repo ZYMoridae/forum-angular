@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Login</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.email" placeholder="Email">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.password" type="password" placeholder="Password">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" style="width: 100%;" (click)="loginClick()">Login</button>
+  <button mat-raised-button color="primary" style="width: 100%;margin-left: 0px;margin-top: 10px;" (click)="loginFacebookClick()">Login with Facebook</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-raised-button color="accent" [mat-dialog-close]="true" style="width: 100%;margin-left: 0px;margin-top: 10px;">Create Account</button>
+
+  <button mat-raised-button color="warn" mat-dialog-close style="width: 100%;margin-left: 0px;margin-top: 10px;">Close</button>
+</mat-dialog-actions>

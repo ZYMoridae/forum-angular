@@ -6,10 +6,11 @@
 <!-- <div *ngIf="userInfo">
   {{userInfo.id}}
 </div> -->
-<div>
+<div class="post-container">
   <!-- <mat-form-field>
     <input [(ngModel)]="workoutCategory.name" matInput placeholder="Favorite food" value="Sushi">
   </mat-form-field> -->
+  <app-second-navigator [selectedTag]="selectedTag" [sortItem]="sortItem" (onTagSelected)="onTagSelected($event)" (onSortItemSelected)="onSortItemSelected($event)"></app-second-navigator>
   <div *ngIf="posts" class="post-list">
       <ul *ngFor="let post of posts" class="post-list-item-container">  
         <li>

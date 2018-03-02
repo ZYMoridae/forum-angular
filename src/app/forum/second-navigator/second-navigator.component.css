@@ -1,0 +1,7 @@
+.second-navigator {
+  list-style: none;
+  display: inline-flex;
+}
+.second-navigator-item {
+  margin-right: 20px;
+}

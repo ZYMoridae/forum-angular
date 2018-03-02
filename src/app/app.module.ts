@@ -21,11 +21,30 @@ import {MatListModule} from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import {InfoService} from './info.service';
+import {AuthenticationService} from './authentication.service';
 import { HttpClientModule } from '@angular/common/http';
 import {TimeAgoPipe} from 'time-ago-pipe';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { SecondNavigatorComponent } from './forum/second-navigator/second-navigator.component';
 import { ForumNavigatorComponent } from './forum-navigator/forum-navigator.component';
+import { ForumModule } from './forum/forum.module';
+import {MatDialogModule} from '@angular/material/dialog';
+import { LoginModalComponent } from './global-header/login-modal/login-modal.component';
+import { CookieService } from 'ngx-cookie-service';
+
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
+
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("Google-OAuth-Client-Id")
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider("378912929246654")
+  }
+]);
+
 
 @NgModule({
   declarations: [
@@ -34,8 +53,8 @@ import { ForumNavigatorComponent } from './forum-navigator/forum-navigator.compo
     MealplanComponent,
     GlobalHeaderComponent,
     TimeAgoPipe,
-    SecondNavigatorComponent,
-    ForumNavigatorComponent
+    ForumNavigatorComponent,
+    LoginModalComponent
   ],
   imports: [
     BrowserModule,
@@ -52,9 +71,15 @@ import { ForumNavigatorComponent } from './forum-navigator/forum-navigator.compo
     MatListModule,
     MatProgressSpinnerModule,
     HttpClientModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MatDialogModule,
+    ForumModule,
+    SocialLoginModule.initialize(config)
   ],
-  providers: [InfoService],
+  entryComponents: [
+    LoginModalComponent
+  ],
+  providers: [InfoService, AuthenticationService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
