@@ -4,13 +4,23 @@
     <span class="example-spacer"></span>
     <mat-icon class="example-icon">notifications</mat-icon>
     <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon class="example-icon">perm_identity</mat-icon>
+      <mat-icon *ngIf="!userInfo; else usericon" class="example-icon">perm_identity</mat-icon>
+      <ng-template #usericon>
+        <img src="{{userInfo}}" alt="" style="width: 25px;height: 25px;border-radius: 50%;">
+      </ng-template>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="openDialog()">
+      <button *ngIf="!isLoggedIn; else logout" mat-menu-item (click)="openDialog()">
         <mat-icon>person</mat-icon>
         <span>Login</span>
       </button>
+      <ng-template #logout>
+        <button mat-menu-item (click)="logOut()">
+          <mat-icon>person</mat-icon>
+          <span>Logout</span>
+        </button>
+      </ng-template>
+
       <button mat-menu-item>
         <mat-icon>dialpad</mat-icon>
         <span>Redial</span>

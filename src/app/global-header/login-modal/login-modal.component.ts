@@ -4,6 +4,8 @@ import { AuthenticationService } from '../../authentication.service';
 import { AuthService } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 import { SocialUser } from "angularx-social-login";
+import { CookieService } from 'ngx-cookie-service';
+
 @Component({
   selector: 'app-login-modal',
   templateUrl: './login-modal.component.html',
@@ -17,12 +19,13 @@ export class LoginModalComponent implements OnInit {
     public dialogRef: MatDialogRef<LoginModalComponent>,
     private authenticationService: AuthenticationService,
     private authService: AuthService,
+    private cookieService: CookieService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit() {
     this.authService.authState.subscribe((user) => {
-      console.log(user)
+      // console.log('###', user);
       this.user = user;
       this.loggedIn = (user != null);
     });
@@ -37,12 +40,15 @@ export class LoginModalComponent implements OnInit {
       password: this.data.password
     });
   }
-  dismissDialog() {
+  dismissDialog(response) {
+    if(response) {
+      this.cookieService.set('userInfo', response.image_url);
+      this.data.login(response.image_url);
+    }
     this.dialogRef.close();
   }
   loginFacebookClick() {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((response)=>{
-      console.log(response)
       this.authenticationService.login('/api/v2/facebook/login', {
         facebook_token: response.authToken,
       }, this.dismissDialog.bind(this));

@@ -6,7 +6,10 @@ import { CookieService } from 'ngx-cookie-service';
 export class AuthenticationService {
   userID = null
   accessToken = null
-  constructor(private infoService: InfoService, private cookieService: CookieService) { }
+  constructor(
+    private infoService: InfoService, 
+    private cookieService: CookieService
+  ) { }
 
   login(url, params, callback=null) {
     return this.infoService.getInfo(url, params, 'POST')
@@ -17,7 +20,7 @@ export class AuthenticationService {
                       }
                       console.log(response.body)
                       if(typeof callback === 'function') {
-                        callback();
+                        callback(response.body);
                       }
                     });
   }
